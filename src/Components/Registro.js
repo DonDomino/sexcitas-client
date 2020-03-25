@@ -16,7 +16,6 @@ class Registro extends Component {
       email: '',
       password: '',
       passwordConfirm: ''
-
     }
   }
 
@@ -30,28 +29,24 @@ class Registro extends Component {
   handleSubmit = async event => {
     event.preventDefault();
     console.log(this.state);
-    // try {
-    //   const formdata = new FormData();
-    //   let pictures = this.state.selectedFiles, data = this.state;
+    try {
+      const formdata = new FormData();
+      let data = this.state;
 
-    //   for(let key in data ){
-    //     formdata.append(key, data[key]);
-    //   }      
+      for(let key in data ){
+        formdata.append(key, data[key]);
+      }      
       
-    //   for(let i = 0; i < pictures.length; i ++ ){
-    //     formdata.append('image', pictures[i]);
-    //   }
-      
-    //   let response = await fetch(`http://localhost:3000/property`, {
-    //     method: "POST",
-    //     body: formdata,
+      let response = await fetch(`http://localhost:3000/property`, {
+        method: "POST",
+        body: formdata,
         
-    //   });
-    //   let res = await response.json();
-    //   console.log(res);     
-    // } catch (err) {
-    //   console.log(err);
-    // }
+      });
+      let res = await response.json();
+      console.log(res);     
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {
