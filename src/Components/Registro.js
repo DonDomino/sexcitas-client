@@ -28,19 +28,15 @@ class Registro extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    console.log(this.state);
+    
     try {
-      const formdata = new FormData();
-      let data = this.state;
-
-      for(let key in data ){
-        formdata.append(key, data[key]);
-      }      
-      
-      let response = await fetch(`http://localhost:3000/property`, {
+      const data = this.state;
+      let response = await fetch(`http://localhost:3000/register`, {
         method: "POST",
-        body: formdata,
-        
+        body: JSON.stringify(data),
+        headers:{
+          'Content-Type': 'application/json'
+        }
       });
       let res = await response.json();
       console.log(res);     
